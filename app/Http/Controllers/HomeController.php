@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arriving;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,11 @@ class HomeController extends Controller
         $authenticated_user = Auth::user();
         // dd($categories); // El dd es su mejor alternativa para depurar el código
         $categories = Category::with('vehicles')->orderBy('id', 'desc')->get();
+        $arriving = Arriving::with('vehicles')->get();
         return View('admin.home')->with([
             'user' => $authenticated_user,
-            'categories' => $categories
+            'categories' => $categories,
+            'arriving' => $arriving
         ]);
 
     }

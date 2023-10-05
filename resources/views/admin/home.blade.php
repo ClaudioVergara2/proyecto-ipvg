@@ -2,11 +2,12 @@
 @section('main-content')
 
 <div class="container py-4">
-    <div class="d-flex justify-content-end">
-        <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
+
+    <div class="d-flex justify-content-between">
+        <h1 class="align-self-end">ArriendoAPP</h1>
+        <a class="btn btn-primary align-self-end" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
 
-    <h4 class="my-4">soy el desarrollador de guugul que se va, procedo a dejar algunas pruebas que realicé</h4>
     <hr />
 
     @if($errors->any())
@@ -15,110 +16,80 @@
         </div>
     @endif
 
-
-
-
-    <section class="section-separator">
-        <h5>Crear nuevas categorias</h5>
-        <form action="{{ route('categories.store') }}" method="POST">
-            @csrf
-            <input type="text" placeholder="Nombre de la categoria" name="name">
-            <input type="submit" value="Crear categoría">
-        </form>
-    </section>
-    <hr />
-
-
-
-
-
-    <section class="section-separator">
-        <h5>Agregar vehiculos a una categoria</h5>
-        <form action="{{ route('vehicles.store') }}" method="POST">
-            @csrf
-            <span>Categorias</span>
-            <select class="form-select" name="category_id">
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Patente</span>
-                <input type="text" class="form-control" name="patent">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <nav>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</button>
+                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Arriendos</button>
+                    </div>
+                </nav>
             </div>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Año</span>
-                <input type="number" class="form-control" name="year">
+            <div class="col-md-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h1 class="section-separator mb-4">Dashboard</h1>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="section-separator mb-4">Vehiculos existentes en cada categorias</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Categoría</th>
+                                            <th>Cantidad de Vehículos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($categories->sortBy('id') as $category)
+                                        <tr>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->vehicles->count() }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <h4 class="section-separator mb-4">Total de arriendos registrados</h4>
+                                <h1 class="display-1 text-center">({{ $arriving->count() }})</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="d-flex justify-content-between">
+                            <h1 class="align-self-end">Arriendos</h1>
+                            <a class="btn btn-primary align-self-end" href="">Nuevo Arriendo</a>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Rut</th>
+                                    <th>Patente</th>
+                                    <th>Entrega</th>
+                                    <th>Devolucion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($arriving->sortBy('id') as $arriving)
+                                <tr>
+                                    <td>{{ $arriving->name }} {{ $arriving->surname }}</td>
+                                    <td>{{ $arriving->rut }}</td>
+                                    <td>{{ $arriving->patent }}</td>
+                                    <td>{{ $arriving->fechaEntrega }}</td>
+                                    <td>{{ $arriving->fechaDevolucion }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Modelo</span>
-                <input type="text" class="form-control" name="model">
-            </div>
-
-            <div class="input-group mt-2">
-                <span class="input-group-text">Marca</span>
-                <input type="text" class="form-control" name="brand">
-            </div>
-            <input type="submit" value="Agregar vehiculo" class="btn btn-primary mt-4">
-        </form>
-    </section>
-    <hr />
-
-
-
-
-
-    <h5 class="section-separator mb-4">Listar nuevas categorias</h5>
-    @foreach($categories as $key => $category)
-        <section class="mb-5">
-            <h6>Categoría: {{ $category->name }} ( id: {{ $category->id }})</h6>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Patente</th>
-                    <th scope="col">Año</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($category->vehicles as $vehicle)
-                <tr>
-                    <td scope="row">{{ $vehicle->id }}</td>
-                    <td>{{ $vehicle->patent }}</td>
-                    <td>{{ $vehicle->year }}</td>
-                    <td>{{ $vehicle->brand }}</td>
-                    <td>{{ $vehicle->model }}</td>
-                    <td>
-{{--
-     IMPORTANTE
-
-     Por defecto las solicitudes en los navegadores son post o get. Cuando uno define un metodo diferente para la ruta en laravel (en este caso delete),
-     Debe enviar la petición dentro de un formulario y especificar el metodo con @method().
-     El @csrf generará un token unico para el formulario que laravel gestiona por detrás de escena, con ello previene ataques maliciosos en los formularios
---}}
-                        <form action="{{ route('vehicles.delete', ['id' => $vehicle->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Eliminar" class="btn btn-outline-secondary btn-sm">
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </section>
-    @endforeach
+        </div>
+    </div>
 </div>
 @endsection
 
 
-@push('css')
-<style>
-    .section-separator {
-        margin-top: 80px;
-    }
-</style>
-@endpush
+
