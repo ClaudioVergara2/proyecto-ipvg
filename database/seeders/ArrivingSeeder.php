@@ -24,7 +24,7 @@ class ArrivingSeeder extends Seeder
                 'surname' => 'munoz',
                 'lastname' => 'jesus',
                 'rut' => '206135549',
-                'patent' => $vehicle->patent,
+                'patent' => $vehicle->id,
                 'email' => 'jose@gmail.com',
                 'fechaEntrega' => '02022005',
                 'fechaDevolucion' => '15022005'
@@ -42,7 +42,7 @@ class ArrivingSeeder extends Seeder
                 'surname' => 'sanchez',
                 'lastname' => 'lopez',
                 'rut' => '123456789',
-                'patent' => $vehicle2->patent,
+                'patent' => $vehicle2->id,
                 'email' => 'maria@gmail.com',
                 'fechaEntrega' => '03032005',
                 'fechaDevolucion' => '16032005'
