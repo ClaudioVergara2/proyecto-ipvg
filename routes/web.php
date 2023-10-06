@@ -8,6 +8,7 @@ use App\Http\Controllers\VehiclesController;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store')->middleware('auth');
 Route::post('/vehicles', [VehiclesController::class, 'store'])->name('vehicles.store')->middleware('auth');
 Route::post('/arriving', [ArrivingController::class, 'store'])->name('arriving.store')->middleware('auth');
+
+Route::get('/form', [AuthController::class, 'form'])->name('form');
+
+
 
 Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
 

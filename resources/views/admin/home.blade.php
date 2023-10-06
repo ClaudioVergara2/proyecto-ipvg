@@ -1,11 +1,21 @@
 @extends('layouts.main')
 @section('main-content')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#mostrarContenido').click(function () {
+            $('#contenido').toggle(); // Alternar la visibilidad de la sección
+        });
+    });
+</script>
+
+
 <div class="container py-4">
 
     <div class="d-flex justify-content-between">
         <h1 class="align-self-end">ArriendoAPP</h1>
-        <a class="btn btn-primary align-self-end" href="{{ route('logout') }}">Cerrar Sesión</a>
+        <a class="btn btn-outline-primary align-self-end" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
 
     <hr />
@@ -23,6 +33,7 @@
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</button>
                         <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Arriendos</button>
+                        <button id="mostrarContenido" class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">otros</button>
                     </div>
                 </nav>
             </div>
@@ -59,7 +70,7 @@
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <div class="d-flex justify-content-between">
                             <h1 class="align-self-end">Arriendos</h1>
-                            <a class="btn btn-primary align-self-end" href="">Nuevo Arriendo</a>
+                            <a class="btn btn-primary align-self-end" href="{{ route('form') }}">Nuevo Arriendo</a>
                         </div>
                         <table class="table table-striped">
                             <thead>
@@ -83,6 +94,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div id="contenido" style="display: none;">
+                        @yield('contenido')
+                    </div>
                     </div>
                 </div>
             </div>

@@ -29,6 +29,7 @@ class ArrivingController extends Controller
             'fechaDevolucion' => $request->fechaDevolucion
         ]);
         return redirect()->route('home');
+        return redirect()->route('form');
     }
 
     public function delete($id){
