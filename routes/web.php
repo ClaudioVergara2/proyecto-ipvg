@@ -42,7 +42,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::get('/formulario', [AuthController::class, 'form'])->name('formulario');
 Route::get('/listado', [AuthController::class, 'list'])->name('listado');
 
-Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
+Route::delete('/eliminarvehicles/{id}', [VehiclesController::class, 'delete'])->name('eliminarvehicles')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

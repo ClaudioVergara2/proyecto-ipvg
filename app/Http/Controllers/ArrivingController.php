@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Arriving;
 use Illuminate\Http\Request;
+use App\Models\Vehicle;
 
 class ArrivingController extends Controller
 {
@@ -30,12 +31,5 @@ class ArrivingController extends Controller
         ]);
         return redirect()->route('home');
         return redirect()->route('form');
-    }
-
-
-    public function delete($id){
-        $vehicle = Arriving::find($id);
-        $vehicle->delete();
-        return redirect()->route('home');
     }
 }

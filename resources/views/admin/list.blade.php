@@ -66,6 +66,7 @@
                             <th>Patente</th>
                             <th>Entrega</th>
                             <th>Devolucion</th>
+                            <th>Accion</th>
                         </tr>
                         </thead>
                            <tbody>
@@ -76,6 +77,14 @@
                                   <td>{{ $arriving->vehicles ? $arriving->vehicles->patent : 'N/A' }}</td>
                                   <td>{{ $arriving->fechaEntrega }}</td>
                                   <td>{{ $arriving->fechaDevolucion }}</td>
+                                  {{--ELIMINAR--}}
+                                  <td>
+                                    <form action="{{ route('eliminarvehicles', $arriving->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </td>
                                </tr>
                                @endforeach
                            </tbody>

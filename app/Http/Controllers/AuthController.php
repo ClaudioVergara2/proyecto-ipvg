@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Arriving;
+use App\Models\Vehicle;
 
 class AuthController extends Controller
 {

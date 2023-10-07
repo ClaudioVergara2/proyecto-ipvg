@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use App\Models\Arriving;
 
 class VehiclesController extends Controller
 {
@@ -25,9 +26,13 @@ class VehiclesController extends Controller
         return redirect()->route('home');
     }
 
-    public function delete($id){
-        $vehicle = Vehicle::find($id);
-        $vehicle->delete();
-        return redirect()->route('home');
+    public function delete($id)
+    {
+        $arriving = Arriving::find($id);
+        if (!$arriving) {
+            return redirect()->route('listado');
+        }
+        $arriving->delete();
+        return redirect()->route('listado');
     }
 }

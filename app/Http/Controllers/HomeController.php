@@ -24,7 +24,6 @@ class HomeController extends Controller
             'vehicles' => $vehicles
         ]);
         /// los select aca
-
     }
 
 }
