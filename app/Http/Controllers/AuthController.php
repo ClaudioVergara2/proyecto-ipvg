@@ -58,8 +58,10 @@ class AuthController extends Controller
 
     public function form(){
         $vehicles = Vehicle::with('arriving')->get();
+        $vehiclesNotRelated = Vehicle::whereDoesntHave('arriving')->get();
         return View('admin.form')->with([
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
+            'vehiclesNotRelated' => $vehiclesNotRelated
         ]);
     }
 

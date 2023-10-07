@@ -18,7 +18,7 @@ class Vehicle extends Model
     }
 
     public function arriving () {
-        return $this->belongsTo(Arriving::class, 'patent');
+        return $this->hasMany(Arriving::class, 'patent');
 
     }
 }
