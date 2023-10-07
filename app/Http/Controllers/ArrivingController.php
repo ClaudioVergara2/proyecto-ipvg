@@ -12,11 +12,11 @@ class ArrivingController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'surname' => 'required|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'rut' => 'required|regex:/^\d{1,8}-[\dkK]$/i',
+            'rut' => 'required|regex:/^\d+\-[0-9kK]$/i',
             'email' => 'required|email',
             'patent' => 'required|exists:vehicles,id',
-            'fechaEntrega' => 'required|date',
-            'fechaDevolucion' => 'required|date|after_or_equal:fechaEntrega',
+            'fechaEntrega' => 'required|date_format:Y-m-d',
+            'fechaDevolucion' => 'required|date_format:Y-m-d|after_or_equal:fechaEntrega',
         ]);
 
         $conflict = Arriving::where('patent', $request->patent)
