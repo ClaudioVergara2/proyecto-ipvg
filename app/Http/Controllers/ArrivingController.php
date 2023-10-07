@@ -15,7 +15,7 @@ class ArrivingController extends Controller
             'lastname' => 'required',
             'rut' => 'required',
             'email' => 'required',
-            'patent' => 'required|exists:arriving,patent',
+            'patent' => 'required|unique:arriving,id',
             'fechaEntrega' => 'required',
             'fechaDevolucion' => 'required'
         ]);

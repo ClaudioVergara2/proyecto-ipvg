@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $authenticated_user = Auth::user();
         // dd($categories);
         $categories = Category::with('vehicles')->orderBy('id', 'desc')->get();
@@ -25,5 +26,4 @@ class HomeController extends Controller
         ]);
         /// los select aca
     }
-
 }

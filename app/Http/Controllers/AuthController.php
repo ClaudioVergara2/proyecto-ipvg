@@ -57,7 +57,10 @@ class AuthController extends Controller
     }
 
     public function form(){
-        return View('admin.form');
+        $vehicles = Vehicle::with('arriving')->get();
+        return View('admin.form')->with([
+            'vehicles' => $vehicles
+        ]);
     }
 
     public function list(){

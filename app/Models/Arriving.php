@@ -16,7 +16,7 @@ class Arriving extends Model
 
     protected $table = 'arriving';
 
-    protected $fillable = ['id', 'name', 'surname','lastname','rut', 'patent', 'email', 'fechaEntrega', 'fechaDevolucion'];
+    protected $fillable = ['id', 'name', 'surname', 'lastname', 'rut', 'patent', 'email', 'fechaEntrega', 'fechaDevolucion'];
 
     public function vehicles () {
         return $this->belongsTo(Vehicle::class, 'patent', 'id');

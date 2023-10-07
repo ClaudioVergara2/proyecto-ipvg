@@ -48,7 +48,7 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                         <section class="section-separator">
-                            <form action="{{ route('vehicles.store') }}" method="POST">
+                            <form action="{{ route('arriving.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <h1 class="section-separator mb-4">Nuevo arriendo</h1>
@@ -58,16 +58,6 @@
                                             <span class="input-group-text">Nombres:</span>
                                             <input type="text" class="form-control" name="name">
                                         </div>
-
-                                      {{--  <div class="input-group mt-2">
-                                            <span class="input-group-text">Patente:</span>
-                                            <select class="form-select" name="patent">
-                                                @foreach($vehicles as $vehicle)
-                                                <option value="{{ $vehicle->id }}">{{ $vehicle->patent }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Apellido paterno:</span>
                                             <input type="text" class="form-control" name="surname">
@@ -89,17 +79,21 @@
                                         <h5>Datos del vehiculo</h5>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Patente:</span>
-                                            <input type="text" class="form-control" name="patent">
+                                            <select class="form-select" name="patent">
+                                                @foreach($vehicles as $vehicles)
+                                                <option value="{{ $vehicles->id }}">{{ $vehicles->patent }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <br>
                                         <h5>Sobre el prestamo</h5>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Fecha de entrega:</span>
-                                            <input type="date" class="form-control" name="fechaEntrega">
+                                            <input type="number" class="form-control" name="fechaEntrega">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Fecha de devolucion:</span>
-                                            <input type="date" class="form-control" name="fechaDevolucion">
+                                            <input type="number" class="form-control" name="fechaDevolucion">
                                         </div>
                                     </div>
                                 </div>
