@@ -75,8 +75,8 @@
                                   <td>{{ $arriving->name }} {{ $arriving->surname }}</td>
                                   <td>{{ $arriving->rut }}</td>
                                   <td>{{ $arriving->vehicles ? $arriving->vehicles->patent : 'N/A' }}</td>
-                                  <td>{{ $arriving->fechaEntrega }}</td>
-                                  <td>{{ $arriving->fechaDevolucion }}</td>
+                                  <td>{{ date('d-m-Y', strtotime($arriving->fechaEntrega)) }}</td>
+                                  <td>{{ date('d-m-Y', strtotime($arriving->fechaDevolucion)) }}</td>
                                   {{--ELIMINAR--}}
                                   <td>
                                     <form action="{{ route('eliminarvehicles', $arriving->id) }}" method="POST">

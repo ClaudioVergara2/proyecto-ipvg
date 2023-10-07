@@ -10,12 +10,6 @@
         </form>
     </div>
 </nav>
-{{--END NAV--}}
-@if($errors->any())
-<div class="alert alert-danger my-4" role="alert">
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
-</div>
-@endif
 <br>
 <div>
     <div class="row">
@@ -56,45 +50,69 @@
                                     <h5>Datos del cliente</h5>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Nombres:</span>
-                                        <input type="text" class="form-control" name="name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                                        @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Apellido paterno:</span>
-                                        <input type="text" class="form-control" name="surname">
+                                        <input type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}">
+                                        @error('surname')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Apellido materno:</span>
-                                        <input type="text" class="form-control" name="lastname">
+                                        <input type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}">
+                                        @error('lastname')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="input-group mt-2">
-                                        <span class="input-group-text">Rut:</span>
-                                        <input type="number" class="form-control" name="rut">
+                                        <span class="input-group-text">Rut (-):</span>
+                                        <input type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}">
+                                        @error('rut')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Email:</span>
-                                        <input type="email" class="form-control" name="email">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                                        @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <h5>Datos del vehiculo</h5>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Patente:</span>
-                                        <select class="form-select" name="patent">
+                                        <select class="form-select @error('patent') is-invalid @enderror" name="patent">
+                                            <option>Seleccionar</option>
                                             @foreach($vehicles as $vehicles)
-                                            <option value=""></option>
                                             <option value="{{ $vehicles->id }}">{{ $vehicles->patent }}</option>
                                             @endforeach
                                         </select>
+                                        @error('patent')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <br>
                                     <h5>Sobre el prestamo</h5>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Fecha de entrega:</span>
-                                        <input type="number" class="form-control" name="fechaEntrega">
+                                        <input type="date" class="form-control @error('fechaEntrega') is-invalid @enderror" name="fechaEntrega">
+                                        @error('fechaEntrega')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="input-group mt-2">
                                         <span class="input-group-text">Fecha de devolucion:</span>
-                                        <input type="number" class="form-control" name="fechaDevolucion">
+                                        <input type="date" class="form-control @error('fechaDevolucion') is-invalid @enderror" name="fechaDevolucion">
+                                        @error('fechaDevolucion')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +120,9 @@
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>
-                    </section>
+                    </section><br>
+                    <hr><br>
+                    <h5>Vehiculos disponibles</h5><br>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -113,7 +133,7 @@
                         <tbody>
                             @foreach($vehiclesNotRelated as $vehicle)
                             <tr>
-                                <td>{{ $vehicle->year }} // {{ $vehicle->brand }} // {{ $vehicle->model }}</td>
+                                <td>{{ $vehicle->brand }}<br>{{ $vehicle->model }}<br>{{ $vehicle->year }}</td>
                                 <td>{{ $vehicle->patent }}</td>
                             </tr>
                             @endforeach

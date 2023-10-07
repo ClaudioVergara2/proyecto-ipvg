@@ -52,12 +52,6 @@
                         </svg>
                         Arriendos
                         <hr />
-                        {{-- <span class="input-group-text">Patente:</span>
-                      <select class="form-select" name="patent">
-                          @foreach($vehicles as $vehicles)
-                          <option value="{{ $vehicles->id }}">{{ $vehicles->patent }}</option>
-                        @endforeach
-                        </select> --}}
                     </a>
                 </li>
         </div>
