@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
         $authenticated_user = Auth::user();
-        // dd($categories); // El dd es su mejor alternativa para depurar el código
+        // dd($categories);
         $categories = Category::with('vehicles')->orderBy('id', 'desc')->get();
         $arriving = Arriving::with('vehicles')->get();
         return View('admin.home')->with([

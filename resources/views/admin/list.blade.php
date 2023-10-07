@@ -1,9 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Home')
+@section('title', 'Listado De Arriendos')
 @section('main-content')
-<head>
-    <title>Home</title>
-</head>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -12,16 +10,16 @@
         });
     });
 </script>
-    {{--NAV--}}
-    <nav class="navbar bg-body-tertiary " style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <h1 class="align-self-end">ArriendoAPP</h1>
-          <form class="d-flex" role="search">
-            <a class="btn btn-outline-primary align-self-end" href="{{ route('logout') }}">Cerrar Sesión</a>
-          </form>
-        </div>
-    </nav>
-    {{--END NAV--}}
+{{--NAV--}}
+<nav class="navbar bg-body-tertiary " style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <h1 class="align-self-end">ArriendoAPP</h1>
+      <form class="d-flex" role="search">
+        <a class="btn btn-outline-primary align-self-end" href="{{ route('logout') }}">Cerrar Sesión</a>
+      </form>
+    </div>
+</nav>
+{{--END NAV--}}
     @if($errors->any())
         <div class="alert alert-danger my-4" role="alert">
             {!! implode('', $errors->all('<div>:message</div>')) !!}
@@ -56,41 +54,35 @@
               </div>
             {{--END SIDEBARS--}}
             <div class="col-md-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div>
-                        <h1 class="section-separator mb-4">Dashboard</h1>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h5 class="section-separator mb-4">Vehiculos existentes en cada categorias</h5>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 70%;">Categoría</th>
-                                            <th style="width: 30%;">Total de vehículos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($categories->sortBy('id') as $category)
-                                        <tr>
-                                            <td>{{ $category->name }}</td>
-                                            <td class="text-center">{{ $category->vehicles->count() }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <h5 class="section-separator mb-4 text-center">Total de arriendos registrados</h5>
-                                <h1 class="display-1 text-center" style="font-weight: bold;">{{ $arriving->count() }}</h1>
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <h1 class="align-self-end">Arriendos</h1>
+                        <a class="btn btn-primary align-self-end" href="{{ route('formulario') }}">Nuevo Arriendo</a>
                     </div>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Rut</th>
+                            <th>Patente</th>
+                            <th>Entrega</th>
+                            <th>Devolucion</th>
+                        </tr>
+                        </thead>
+                           <tbody>
+                               @foreach($arrivingMostar->sortBy('id') as $arriving)
+                               <tr>
+                                  <td>{{ $arriving->name }} {{ $arriving->surname }}</td>
+                                  <td>{{ $arriving->rut }}</td>
+                                  <td>{{ $arriving->patent }}</td>
+                                  <td>{{ $arriving->fechaEntrega }}</td>
+                                  <td>{{ $arriving->fechaDevolucion }}</td>
+                               </tr>
+                               @endforeach
+                           </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-
-

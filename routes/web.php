@@ -33,14 +33,14 @@ Route::group(['prefix' => '/register'], function(){
     Route::post('/', [AuthController::class, 'storeAccount'])->name('register.store');
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store')->middleware('auth');
 Route::post('/vehicles', [VehiclesController::class, 'store'])->name('vehicles.store')->middleware('auth');
 Route::post('/arriving', [ArrivingController::class, 'store'])->name('arriving.store')->middleware('auth');
 
-Route::get('/form', [AuthController::class, 'form'])->name('form');
-
-
+//RUTA VISTAS
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/formulario', [AuthController::class, 'form'])->name('formulario');
+Route::get('/listado', [AuthController::class, 'list'])->name('listado');
 
 Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
 

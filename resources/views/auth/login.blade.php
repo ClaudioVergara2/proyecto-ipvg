@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Inicar Sesión')
 @section('main-content')
     <form action="{{ route('login.attempt') }}" method="POST">
         @csrf

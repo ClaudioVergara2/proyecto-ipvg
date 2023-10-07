@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('lastname');
-            $table->integer('rut')->unique();
-            $table->unsignedBigInteger('patent', 6)->unique();
-            $table->string('email')->unique();
+            $table->integer('rut');
+            $table->bigInteger('patent');
+            $table->string('email');
             $table->integer('fechaEntrega');
             $table->integer('fechaDevolucion');
             $table->timestamps();

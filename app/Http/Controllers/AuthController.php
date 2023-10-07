@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Arriving;
 
 class AuthController extends Controller
 {
@@ -56,5 +57,10 @@ class AuthController extends Controller
 
     public function form(){
         return View('admin.form');
+    }
+
+    public function list(){
+        $arrivingData = Arriving::all();
+        return view('admin.list', ['arrivingMostar' => $arrivingData]);
     }
 }
