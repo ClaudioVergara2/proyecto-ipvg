@@ -14,6 +14,6 @@ class Arriving extends Model
     protected $fillable = ['id', 'name', 'surname','lastname','rut', 'patent', 'email', 'fechaEntrega', 'fechaDevolucion'];
 
     public function vehicles () {
-        return $this->belongsTo(Vehicle::class, 'patent', 'patent');
+        return $this->belongsTo(Vehicle::class, 'patent', 'id');
     }
 }

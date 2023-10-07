@@ -73,7 +73,7 @@
                                <tr>
                                   <td>{{ $arriving->name }} {{ $arriving->surname }}</td>
                                   <td>{{ $arriving->rut }}</td>
-                                  <td>{{ $arriving->patent }}</td>
+                                  <td>{{ $arriving->vehicles ? $arriving->vehicles->patent : 'N/A' }}</td>
                                   <td>{{ $arriving->fechaEntrega }}</td>
                                   <td>{{ $arriving->fechaDevolucion }}</td>
                                </tr>

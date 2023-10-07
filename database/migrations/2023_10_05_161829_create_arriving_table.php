@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('lastname');
-            $table->integer('rut');
-            $table->bigInteger('patent');
-            $table->string('email');
+            $table->integer('rut')->unique();
+            $table->unsignedBigInteger('patent');
+            $table->string('email')->unique();
             $table->integer('fechaEntrega');
             $table->integer('fechaDevolucion');
             $table->timestamps();
+            $table->foreign('patent')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 

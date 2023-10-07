@@ -32,6 +32,7 @@ class ArrivingController extends Controller
         return redirect()->route('form');
     }
 
+
     public function delete($id){
         $vehicle = Arriving::find($id);
         $vehicle->delete();
