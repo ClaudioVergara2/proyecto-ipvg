@@ -12,7 +12,7 @@ class ArrivingController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'surname' => 'required|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'rut' => 'required|regex:/^\d+\-[0-9kK]$/i',
+            'rut' => 'required|regex:/^\d+\-[0-9kK]$/i|unique:arriving,rut',
             'email' => 'required|email',
             'patent' => 'required|exists:vehicles,id',
             'fechaEntrega' => 'required|date_format:Y-m-d',
@@ -41,6 +41,5 @@ class ArrivingController extends Controller
         'fechaDevolucion' => $request->fechaDevolucion
     ]);
     return redirect()->route('home');
-    return redirect()->route('form');
     }
 }
