@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Arriving;
+use App\Models\Rent;
 use App\Models\Vehicle;
 
 class AuthController extends Controller
@@ -57,8 +57,8 @@ class AuthController extends Controller
     }
 
     public function form(){
-        $vehicles = Vehicle::whereDoesntHave('arriving')->get();
-        $vehiclesNotRelated = Vehicle::whereDoesntHave('arriving')->get();
+        $vehicles = Vehicle::whereDoesntHave('rent')->get();
+        $vehiclesNotRelated = Vehicle::whereDoesntHave('rent')->get();
         return View('admin.form')->with([
             'vehicles' => $vehicles,
             'vehiclesNotRelated' => $vehiclesNotRelated,
@@ -66,7 +66,7 @@ class AuthController extends Controller
     }
 
     public function list(){
-        $arrivingData = Arriving::all();
-        return view('admin.list', ['arrivingMostar' => $arrivingData]);
+        $rentData = Rent::all();
+        return view('admin.list', ['rentMostar' => $rentData]);
     }
 }

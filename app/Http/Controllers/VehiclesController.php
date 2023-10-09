@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
-use App\Models\Arriving;
+use App\Models\Rent;
 
 class VehiclesController extends Controller
 {
@@ -28,11 +28,11 @@ class VehiclesController extends Controller
 
     public function delete($id)
     {
-        $arriving = Arriving::find($id);
-        if (!$arriving) {
+        $rent = Rent::find($id);
+        if (!$rent) {
             return redirect()->route('listado');
         }
-        $arriving->delete();
+        $rent->delete();
         return redirect()->route('listado');
     }
 }

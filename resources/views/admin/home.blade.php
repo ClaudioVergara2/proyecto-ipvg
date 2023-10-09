@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <h5 class="section-separator mb-4 text-center">Total de arriendos registrados</h5>
-                            <h1 class="display-1 text-center" style="font-weight: bold;">{{ $arriving->count() }}</h1>
+                            <h1 class="display-1 text-center" style="font-weight: bold;">{{ $rent->count() }}</h1>
                         </div>
                     </div>
                 </div>

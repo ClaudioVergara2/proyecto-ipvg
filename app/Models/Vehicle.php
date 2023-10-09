@@ -17,8 +17,8 @@ class Vehicle extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function arriving () {
-        return $this->hasMany(Arriving::class, 'patent');
+    public function rent () {
+        return $this->hasMany(Rent::class, 'patent');
 
     }
 }

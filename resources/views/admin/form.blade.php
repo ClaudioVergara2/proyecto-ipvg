@@ -42,7 +42,7 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <section class="section-separator">
-                        <form action="{{ route('arriving.store') }}" method="POST">
+                        <form action="{{ route('rent.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <h1 class="section-separator mb-4">Nuevo arriendo</h1>

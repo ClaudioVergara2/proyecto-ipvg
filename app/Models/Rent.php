@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Arriving extends Model
+class Rent extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Arriving extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $table = 'arriving';
+    protected $table = 'rent';
 
     protected $fillable = ['id', 'name', 'surname', 'lastname', 'rut', 'patent', 'email', 'fechaEntrega', 'fechaDevolucion'];
 

@@ -2,13 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Arriving;
+use App\Models\Rent;
 use App\Models\Vehicle;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class ArrivingSeeder extends Seeder
+class RentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,7 +22,7 @@ class ArrivingSeeder extends Seeder
         ])->first();
 
         if ($vehicle) {
-            Arriving::create([
+            Rent::create([
                 'name' => 'jose',
                 'surname' => 'munoz',
                 'lastname' => 'jesus',
@@ -33,7 +32,6 @@ class ArrivingSeeder extends Seeder
                 'fechaEntrega' => $fechaEntrega,
                 'fechaDevolucion' => $fechaDevolucion
             ]);
-
         }
 
         $fechaEntrega2 = Carbon::createFromFormat('d-m-Y', '01-06-2005')->format('Y-m-d');
@@ -44,7 +42,7 @@ class ArrivingSeeder extends Seeder
         ])->first();
 
         if ($vehicle2) {
-            Arriving::create([
+            Rent::create([
                 'name' => 'maria',
                 'surname' => 'sanchez',
                 'lastname' => 'lopez',
@@ -54,7 +52,6 @@ class ArrivingSeeder extends Seeder
                 'fechaEntrega' => $fechaEntrega2,
                 'fechaDevolucion' => $fechaDevolucion2
             ]);
-
         }
     }
 }
